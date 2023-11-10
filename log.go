@@ -3,8 +3,8 @@ package logger
 import (
 	"os"
 
-	. "github.com/neatio-network/common-go"
-	"github.com/neatio-network/log15-go"
+	. "github.com/neatio-net/common-go"
+	"github.com/neatio-net/log15-go"
 )
 
 var mainHandler log15.Handler
