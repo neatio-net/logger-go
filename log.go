@@ -18,24 +18,15 @@ func SetLogLevel(logLevel string) {
 	resetWithLogLevel(logLevel)
 }
 
-func resetWithLogLevel(logLevel string) {
-	// main handler
-	//handlers := []log15.Handler{}
+func resetWithLogLevel(logLevel string) {	
 	mainHandler = log15.LvlFilterHandler(
 		getLevel(logLevel),
 		log15.StreamHandler(os.Stdout, log15.TerminalFormat()),
 	)
-	//handlers = append(handlers, mainHandler)
-
-	// bypass handler for not filtering on global logLevel.
 	bypassHandler = log15.StreamHandler(os.Stdout, log15.TerminalFormat())
-	//handlers = append(handlers, bypassHandler)
-
-	// By setting handlers on the root, we handle events from all loggers.
 	log15.Root().SetHandler(mainHandler)
 }
 
-// See go-wire/log for an example of usage.
 func MainHandler() log15.Handler {
 	return mainHandler
 }
@@ -65,9 +56,6 @@ func getLevel(lvlString string) log15.Lvl {
 	}
 	return lvl
 }
-
-//----------------------------------------
-// Exported from log15
 
 var LvlFilterHandler = log15.LvlFilterHandler
 var LvlDebug = log15.LvlDebug
